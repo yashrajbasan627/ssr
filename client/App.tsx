@@ -20,7 +20,6 @@ const App: React.FC<AppProps> = ({ page, blogs, blog }) => {
 
   return (
     <div>
-      <h1>My Blog</h1>
       <ul>
         {blogs?.map((b) => (
           <li key={b.slug}>

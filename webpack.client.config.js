@@ -1,9 +1,9 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WatchExternalFilesPlugin = require("webpack-watch-external-files-plugin");
 
 module.exports = {
   entry: "./client/index.tsx",
-  target: "web",
+  target: ["web", "es5"],
   mode: "development",
   output: {
     path: path.resolve(__dirname, "public"),
@@ -13,6 +13,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
+  watch: true,
   module: {
     rules: [
       {
@@ -26,5 +27,9 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
+  plugins: [
+    new WatchExternalFilesPlugin({
+      files: ["./client/**/*.tsx"],
+    }),
+  ],
 };

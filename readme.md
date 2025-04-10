@@ -2,4 +2,5 @@
 
 2. because we are using hydration. server render and client render should be same otherwise process of event attaching will not happen. because i used props. i need to serialize prop data in server file and index.ts file. it took lot of time. faced lot of mismatch between server rendered html and client side rendered html
 
-3. 
+3. Even little spacing issues can create mismatch.
+
