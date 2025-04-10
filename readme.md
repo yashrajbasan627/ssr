@@ -1,5 +1,5 @@
-1. Because we are using ts+tsx lots of unnecessary file we need to create to compile main index.ts file. i created start.ts file because index.ts was not allowing to import tsx expression file. This thing will make harder to manage the large codebase
+1. Because we are using ts+tsx lots of file we need to create to compile main server/index.tsx file. i created start.ts which will bootup server while index.ts focused on logic and routes. This thing will make harder to manage the large codebase. we will face this kind of problems as codebase grows larger and more nested folder structure create
 
-2. because we are using hydration. server render and client render should be same otherwise process of event attaching will not happen. because i used props. i need to serialize prop data in server file and index.ts file. it took lot of time. faced lot of mismatch between server rendered html and client side rendered html
+2. Because we are using hydration. server render and client render should be same otherwise process of event attaching will not happen. because i used props. i need to serialize prop data in server file and client side file. it took lot of time. faced lot of mismatch between server rendered html and client side rendered html
 
-3. 
+3. We need to write our own custom webpack config for optimization and hot module reload. kind of on every change we need to build.
