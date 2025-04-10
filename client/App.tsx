@@ -23,10 +23,7 @@ const App: React.FC<AppProps> = ({ page, blogs, blog }) => {
       <ul>
         {blogs?.map((b) => (
           <li key={b.slug}>
-            <a onClick={(e) => {
-              e.preventDefault();
-              console.log("clicked!");
-              }} href={`/blog/${b.slug}`}>{b.title}</a>
+            <a href={`/blog/${b.slug}`}>{b.title}</a>
           </li>
         ))}
       </ul>

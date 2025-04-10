@@ -2,12 +2,15 @@ const path = require("path");
 const WatchExternalFilesPlugin = require("webpack-watch-external-files-plugin");
 
 module.exports = {
-  entry: "./client/index.tsx",
+  entry: {
+    bundle: "./client/index.tsx",
+    header: "./client/header-client.tsx",
+  },
   target: ["web", "es5"],
   mode: "development",
   output: {
     path: path.resolve(__dirname, "public"),
-    filename: "bundle.js",
+    filename: "[name].js",
     publicPath: "/",
   },
   resolve: {

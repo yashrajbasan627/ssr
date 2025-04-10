@@ -4,3 +4,13 @@
 
 3. Even little spacing issues can create mismatch.
 
+4. we need to create separate bundle js file for each component. just like i added header bundle in webpack and also need to add to server/index.ts file using renderToString. imagine, 100 components and you entire sever.ts piled with script strings
+
+5. As you can see in client folder, i need to create separate file for hydrating header component. this approach of hydrating components which is needed is known as island architecture which is getting used by astro and next
+
+6. mostly devs use requestIdleCallback for lazy hydration. it is function which schedule work after the browser finishes layouting and rendering(After pages loads). it is mostly used to do some non critical background tasks. we can use this thing to hydrate non critical parts such as footer. it is bad for critical UI elements such as button. big problem with requestIdleCallback is that it is only available in limited versions of the browser. it means we need to write or find polyfill and keep maintaining it
+
+7. To do lazy hydration for critical UI elements. we have only async option in script to load that specific component
+
+
+

@@ -5,7 +5,7 @@ import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import { blogPosts } from './blog';
 
 import App, { AppProps } from "../client/App"; 
-import { Header } from '../client/components/Header';
+import { Header } from '../client/components/Header/index';
 import { Footer } from '../client/components/Footer';
 
 // SSR: import react component
@@ -20,9 +20,13 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 app.get("/", (req, res) => {
 
   const props:AppProps = { page: 'home', blogs: blogPosts };
+  
+  // This will do hydration. this is we call partial hydration
+  // here you can header is getting hydrated and footer not
+  const headerHTML = renderToString(<Header />)
+
   // This is will not hydrate becuase there is no event
   // listeners attached.
-  const headerHTML = renderToStaticMarkup(<Header />)
   const footerHTML = renderToStaticMarkup(<Footer />)
 
   
@@ -35,11 +39,23 @@ app.get("/", (req, res) => {
         <title>SSR</title>
       </head>
       <body>
-      ${headerHTML}
+      <div id="header">${headerHTML}</div>
       <div id="root">${appHtml}</div>
       ${footerHTML}
       <script>window.__INITIAL_DATA__ = ${JSON.stringify(props)};</script>
       <script src="/bundle.js"></script>
+      <script>
+        requestIdleCallback(() => {
+          console.log("in requestIdleCallback");
+          const script = document.createElement("script");
+          setTimeout(() => {
+            script.src = "/header.js";
+            document.body.appendChild(script);
+          },3000)
+          
+        });
+      </script>
+      
       </body>
     </html>
     `)
