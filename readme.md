@@ -12,5 +12,5 @@
 
 7. To do lazy hydration for critical UI elements. we have only async option in script to load that specific component
 
-
+8.
 
