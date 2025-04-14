@@ -3,8 +3,8 @@ const WatchExternalFilesPlugin = require("webpack-watch-external-files-plugin");
 
 module.exports = {
   entry: {
-    bundle: "./client/index.tsx",
-    header: "./client/header-client.tsx",
+    bundle: "./client/client.tsx",
+    asyncContent: "./client/AsyncContent.tsx",
   },
   target: ["web", "es5"],
   mode: "development",

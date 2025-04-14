@@ -1,34 +1,16 @@
-import React from 'react';
-import { BlogPost } from '../server/blog';
+import React, { Suspense } from "react";
+import { useState } from "react";
+import { AsyncContent } from "./AsyncContent";
 
-export type AppProps = {
-  page: 'home' | 'blog';
-  blog?: BlogPost;
-  blogs?: BlogPost[];
-};
-
-const App: React.FC<AppProps> = ({ page, blogs, blog }) => {
-  if (page === 'blog' && blog) {
-    return (
-      <div>
-        <h1>{blog.title}</h1>
-        <p>{blog.content}</p>
-        <a href="/">← Back to blog list</a>
-      </div>
-    );
-  }
-
+export default function App() {
+  const [show, setShow] = useState(false);
   return (
     <div>
-      <ul>
-        {blogs?.map((b) => (
-          <li key={b.slug}>
-            <a href={`/blog/${b.slug}`}>{b.title}</a>
-          </li>
-        ))}
-      </ul>
+      <h1>Streaming SSR with React 18</h1>
+      <button onClick={() => setShow((prev) => !prev)}>Toggle</button>
+      <Suspense fallback={<p>Loading async content...</p>}>
+        {show && <AsyncContent />}
+      </Suspense>
     </div>
   );
-};
-
-export default App;
+}
