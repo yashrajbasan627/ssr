@@ -12,4 +12,30 @@
 
 7. To do lazy hydration for critical UI elements. we have only async option in script to load that specific component
 
-8.
+---
+
+## Pros:
+
+- You control the render cycle, html structure, script loading, and hydration strategy.
+
+- Stream critical content fast; defer non essential parts via requestIdleCallback, Suspense, etc.
+
+- Fine tune partial hydration, lazy loading, or progressive interactivity.
+
+- No lock in to Next.js, Remix, or other custom stacks or tight integrations.
+
+- You gain deep knowledge of SSR, hydration, streaming, and rendering lifecycle.
+
+## Cons:
+
+- You manage everything: HTML shell, bundling, routing, error boundaries, suspense, etc.
+
+- Hydration mismatches, broken streams, or React timing issues can silently fail. This is issue is not common when you are building custom ssr solution.Even small changes (e.g., new entry points, async components) can break hydration or streams if not carefully handled.
+
+- Manual routing, dynamic meta tags, script injection, etc., all increase dev effort.
+
+- No built in hot module reload, code splitting, file routing, or dev helpers unless you build them.
+
+- Requires a strong grasp of React internals, streaming APIs, bundlers, and hydration nuances.
+
+- Will decrease team productivity as codebase start growing. So, much time will go to some operational things and syntax issues. while we can focus on something which really make good impact
